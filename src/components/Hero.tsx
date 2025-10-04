@@ -14,6 +14,13 @@ const Hero = () => {
         {/* Profile Photo */}
         <div className="flex justify-center mb-8">
           <div className="relative w-48 h-48 md:w-56 md:h-56">
+            {/* Animated motion streaks */}
+            <div className="absolute inset-0 -z-10">
+              <div className="absolute top-1/4 left-0 w-32 h-1 bg-gradient-to-r from-transparent via-accent/30 to-transparent animate-[slide-right_2s_ease-in-out_infinite]" />
+              <div className="absolute top-1/2 left-0 w-40 h-1 bg-gradient-to-r from-transparent via-primary/30 to-transparent animate-[slide-right_2.5s_ease-in-out_infinite]" style={{ animationDelay: '0.5s' }} />
+              <div className="absolute top-3/4 left-0 w-28 h-1 bg-gradient-to-r from-transparent via-accent/30 to-transparent animate-[slide-right_2.2s_ease-in-out_infinite]" style={{ animationDelay: '1s' }} />
+            </div>
+            
             <img
               src={jonatanPhoto}
               alt="Johnatan Milrad"
