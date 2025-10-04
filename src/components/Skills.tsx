@@ -110,13 +110,14 @@ const Skills = () => {
                 </div>
               )}
               
-              {/* Gaming - Horizontal bullet trails */}
+              {/* Gaming - Horizontal bullet trails behind content */}
               {skill.title === "Gaming" && (
-                <div className="absolute top-0 left-0 right-0 bottom-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
-                  <div className="absolute top-1/4 left-0 h-1 w-16 bg-accent animate-[slide-in-right_1s_ease-in-out_infinite]" style={{ animationDelay: '0s' }} />
-                  <div className="absolute top-1/3 left-0 h-1 w-20 bg-accent/80 animate-[slide-in-right_1s_ease-in-out_infinite]" style={{ animationDelay: '0.2s' }} />
-                  <div className="absolute top-1/2 left-0 h-1 w-14 bg-accent/60 animate-[slide-in-right_1s_ease-in-out_infinite]" style={{ animationDelay: '0.4s' }} />
-                  <div className="absolute top-2/3 left-0 h-1 w-18 bg-accent/90 animate-[slide-in-right_1s_ease-in-out_infinite]" style={{ animationDelay: '0.6s' }} />
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none z-0 overflow-hidden">
+                  <div className="absolute top-1/4 -left-40 h-1.5 w-32 bg-primary/50 rounded-full animate-[slide-out-right_1.2s_ease-in-out_infinite]" style={{ animationDelay: '0s' }} />
+                  <div className="absolute top-1/3 -left-32 h-px w-24 bg-accent/60 rounded-full animate-[slide-out-right_1.4s_ease-in-out_infinite]" style={{ animationDelay: '0.15s' }} />
+                  <div className="absolute top-1/2 -left-48 h-1.5 w-36 bg-primary/40 rounded-full animate-[slide-out-right_1.1s_ease-in-out_infinite]" style={{ animationDelay: '0.3s' }} />
+                  <div className="absolute top-[60%] -left-24 h-px w-20 bg-accent/50 rounded-full animate-[slide-out-right_1.6s_ease-in-out_infinite]" style={{ animationDelay: '0.45s' }} />
+                  <div className="absolute top-[72%] -left-40 h-1.5 w-28 bg-primary/45 rounded-full animate-[slide-out-right_1.3s_ease-in-out_infinite]" style={{ animationDelay: '0.6s' }} />
                 </div>
               )}
               
