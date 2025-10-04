@@ -1,10 +1,110 @@
 import { useEffect, useState } from "react";
+import { Canvas } from "@react-three/fiber";
+import { OrbitControls } from "@react-three/drei";
+import * as THREE from "three";
+
+const OutletSwitch = ({ isDark, onClick }: { isDark: boolean; onClick: () => void }) => {
+  return (
+    <group onClick={onClick}>
+      {/* Outlet plate */}
+      <mesh position={[0, 0, -0.1]}>
+        <boxGeometry args={[2, 2.8, 0.15]} />
+        <meshStandardMaterial 
+          color={isDark ? "#4a5568" : "#e2e8f0"} 
+          roughness={0.4}
+          metalness={0.1}
+        />
+      </mesh>
+
+      {/* Plate screws - top */}
+      <mesh position={[0, 1.2, 0]}>
+        <cylinderGeometry args={[0.1, 0.1, 0.05, 16]} />
+        <meshStandardMaterial color="#94a3b8" metalness={0.6} roughness={0.3} />
+      </mesh>
+      <mesh position={[0, 1.2, 0.025]} rotation={[0, 0, Math.PI / 4]}>
+        <boxGeometry args={[0.15, 0.02, 0.01]} />
+        <meshStandardMaterial color="#64748b" metalness={0.7} roughness={0.2} />
+      </mesh>
+
+      {/* Plate screws - bottom */}
+      <mesh position={[0, -1.2, 0]}>
+        <cylinderGeometry args={[0.1, 0.1, 0.05, 16]} />
+        <meshStandardMaterial color="#94a3b8" metalness={0.6} roughness={0.3} />
+      </mesh>
+      <mesh position={[0, -1.2, 0.025]} rotation={[0, 0, Math.PI / 4]}>
+        <boxGeometry args={[0.15, 0.02, 0.01]} />
+        <meshStandardMaterial color="#64748b" metalness={0.7} roughness={0.2} />
+      </mesh>
+
+      {/* Switch housing recess */}
+      <mesh position={[0, 0, -0.02]}>
+        <boxGeometry args={[1.3, 1.8, 0.1]} />
+        <meshStandardMaterial 
+          color={isDark ? "#2d3748" : "#cbd5e1"} 
+          roughness={0.6}
+        />
+      </mesh>
+
+      {/* Switch lever */}
+      <group position={[0, isDark ? 0.3 : -0.3, 0.1]}>
+        <mesh>
+          <boxGeometry args={[0.8, 1.1, 0.2]} />
+          <meshStandardMaterial 
+            color={isDark ? "#4a5568" : "#f1f5f9"} 
+            roughness={0.3}
+            metalness={0.1}
+          />
+        </mesh>
+        
+        {/* Lever highlight */}
+        <mesh position={[0, 0.3, 0.11]}>
+          <boxGeometry args={[0.6, 0.2, 0.01]} />
+          <meshStandardMaterial 
+            color="#ffffff" 
+            transparent 
+            opacity={0.3}
+          />
+        </mesh>
+
+        {/* Grip lines */}
+        {[-0.15, 0, 0.15].map((y, i) => (
+          <mesh key={i} position={[0, y, 0.11]}>
+            <boxGeometry args={[0.6, 0.03, 0.01]} />
+            <meshStandardMaterial color={isDark ? "#64748b" : "#94a3b8"} />
+          </mesh>
+        ))}
+      </group>
+
+      {/* ON/OFF labels */}
+      <mesh position={[-0.5, 0.7, 0.02]}>
+        <planeGeometry args={[0.2, 0.1]} />
+        <meshBasicMaterial color={isDark ? "#94a3b8" : "#64748b"} />
+      </mesh>
+      <mesh position={[-0.5, -0.7, 0.02]}>
+        <planeGeometry args={[0.2, 0.1]} />
+        <meshBasicMaterial color={isDark ? "#94a3b8" : "#64748b"} />
+      </mesh>
+
+      {/* Indicator LED */}
+      <mesh position={[0.7, 0.9, 0.02]}>
+        <sphereGeometry args={[0.08, 16, 16]} />
+        <meshStandardMaterial 
+          color={isDark ? "#10b981" : "#9ca3af"}
+          emissive={isDark ? "#10b981" : "#000000"}
+          emissiveIntensity={isDark ? 0.8 : 0}
+        />
+      </mesh>
+      {isDark && (
+        <pointLight position={[0.7, 0.9, 0.3]} color="#10b981" intensity={0.5} distance={2} />
+      )}
+    </group>
+  );
+};
 
 const ThemeToggle = () => {
   const [isDark, setIsDark] = useState(false);
 
   useEffect(() => {
-    // Check initial theme
     const isDarkMode = document.documentElement.classList.contains('dark');
     setIsDark(isDarkMode);
   }, []);
@@ -21,63 +121,33 @@ const ThemeToggle = () => {
   };
 
   return (
-    <button
-      onClick={toggleTheme}
-      className="fixed top-6 right-6 z-50 group"
-      aria-label="Toggle theme"
-    >
-      {/* Outlet plate */}
-      <div className="relative w-24 h-32 bg-gradient-to-b from-gray-100 to-gray-200 dark:from-gray-700 dark:to-gray-800 rounded-lg shadow-2xl border-2 border-gray-300 dark:border-gray-600">
-        {/* Plate screws */}
-        <div className="absolute top-2 left-1/2 -translate-x-1/2 w-3 h-3 rounded-full bg-gradient-to-br from-gray-400 to-gray-500 shadow-inner">
-          <div className="absolute inset-0.5 bg-gray-300 rounded-full" />
-          <div className="absolute top-0.5 left-0.5 w-2 h-0.5 bg-gray-500 rotate-45" />
-        </div>
-        <div className="absolute bottom-2 left-1/2 -translate-x-1/2 w-3 h-3 rounded-full bg-gradient-to-br from-gray-400 to-gray-500 shadow-inner">
-          <div className="absolute inset-0.5 bg-gray-300 rounded-full" />
-          <div className="absolute top-0.5 left-0.5 w-2 h-0.5 bg-gray-500 rotate-45" />
-        </div>
-
-        {/* Switch housing */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-16 h-20 bg-gradient-to-b from-gray-200 to-gray-300 dark:from-gray-800 dark:to-gray-900 rounded-md shadow-inner">
-          {/* Switch track */}
-          <div className="absolute inset-2 bg-gradient-to-b from-gray-300 to-gray-200 dark:from-gray-900 dark:to-gray-800 rounded-sm shadow-inner" />
-          
-          {/* Switch lever */}
-          <div 
-            className={`absolute left-1/2 -translate-x-1/2 w-10 h-14 transition-all duration-300 ease-out ${
-              isDark ? 'top-2' : 'bottom-2'
-            }`}
-          >
-            <div className="relative w-full h-full">
-              {/* Lever body */}
-              <div className="absolute inset-0 bg-gradient-to-b from-gray-50 to-gray-200 dark:from-gray-600 dark:to-gray-700 rounded-md shadow-lg group-hover:shadow-xl transition-shadow border border-gray-300 dark:border-gray-500">
-                {/* Lever highlight */}
-                <div className="absolute inset-x-2 top-1 h-3 bg-gradient-to-b from-white/60 to-transparent rounded-t-md" />
-                
-                {/* Lever grip lines */}
-                <div className="absolute inset-x-2 top-1/2 -translate-y-1/2 space-y-1">
-                  <div className="h-0.5 bg-gray-300 dark:bg-gray-500 rounded-full" />
-                  <div className="h-0.5 bg-gray-300 dark:bg-gray-500 rounded-full" />
-                  <div className="h-0.5 bg-gray-300 dark:bg-gray-500 rounded-full" />
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Status labels */}
-          <div className="absolute left-1 top-1 text-[8px] font-bold text-gray-600 dark:text-gray-400">ON</div>
-          <div className="absolute left-1 bottom-1 text-[8px] font-bold text-gray-600 dark:text-gray-400">OFF</div>
-        </div>
-
-        {/* Indicator light */}
-        <div className={`absolute top-4 right-3 w-2 h-2 rounded-full transition-all duration-300 ${
-          isDark 
-            ? 'bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.8)]' 
-            : 'bg-gray-400 shadow-none'
-        }`} />
-      </div>
-    </button>
+    <div className="fixed top-6 right-6 z-50 w-32 h-40 cursor-pointer">
+      <Canvas
+        camera={{ position: [0, 0, 8], fov: 50 }}
+        shadows
+      >
+        <ambientLight intensity={0.5} />
+        <directionalLight 
+          position={[5, 5, 5]} 
+          intensity={1}
+          castShadow
+          shadow-mapSize-width={1024}
+          shadow-mapSize-height={1024}
+        />
+        <spotLight position={[-5, 5, 5]} intensity={0.3} />
+        
+        <OutletSwitch isDark={isDark} onClick={toggleTheme} />
+        
+        <OrbitControls 
+          enableZoom={false} 
+          enablePan={false}
+          minPolarAngle={Math.PI / 2}
+          maxPolarAngle={Math.PI / 2}
+          minAzimuthAngle={-0.3}
+          maxAzimuthAngle={0.3}
+        />
+      </Canvas>
+    </div>
   );
 };
 
