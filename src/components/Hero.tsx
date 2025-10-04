@@ -27,8 +27,8 @@ const Hero = () => {
             Johnatan <span className="text-gradient">Milrad</span>
           </h1>
           <p className="text-xl md:text-2xl text-muted-foreground max-w-2xl mx-auto">
-            Baker by day, creative by night—bridging the gap between artistry 
-            and quality assurance through music production and design.
+            Baker by day, creative by night—blending music production, design,
+            and competitive gaming into a unique multidisciplinary skillset.
           </p>
         </div>
 
@@ -40,7 +40,7 @@ const Hero = () => {
             🎨 Designer
           </span>
           <span className="px-4 py-2 bg-card border border-border rounded-full">
-            🧪 QA Enthusiast
+            🎮 Gamer
           </span>
           <span className="px-4 py-2 bg-card border border-border rounded-full">
             🏍️ Rider

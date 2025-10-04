@@ -1,6 +1,6 @@
 import { Card } from "@/components/ui/card";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
-import { Music, Palette, TestTube, Settings } from "lucide-react";
+import { Music, Palette, Gamepad2, Settings } from "lucide-react";
 import { useState } from "react";
 
 import cubaseImg from "@/assets/tools/cubase.jpg";
@@ -11,11 +11,10 @@ import figmaImg from "@/assets/tools/figma.jpg";
 import photoshopImg from "@/assets/tools/photoshop.jpg";
 import illustratorImg from "@/assets/tools/illustrator.jpg";
 import uiuxImg from "@/assets/tools/uiux.jpg";
-import qaImg from "@/assets/tools/qa.jpg";
-import testingMethodologiesImg from "@/assets/tools/testing-methodologies.jpg";
-import bugTrackingImg from "@/assets/tools/bug-tracking.jpg";
-import userTestingImg from "@/assets/tools/user-testing.jpg";
-import documentationImg from "@/assets/tools/documentation.jpg";
+import strategicThinkingImg from "@/assets/tools/strategic-thinking.jpg";
+import handEyeCoordinationImg from "@/assets/tools/hand-eye-coordination.jpg";
+import teamCommunicationImg from "@/assets/tools/team-communication.jpg";
+import quickDecisionsImg from "@/assets/tools/quick-decisions.jpg";
 import attentionDetailImg from "@/assets/skills/attention-detail.jpg";
 import teamCollabImg from "@/assets/skills/team-collaboration.jpg";
 import problemSolvingImg from "@/assets/skills/problem-solving.jpg";
@@ -30,10 +29,10 @@ const toolImages: Record<string, { image: string; alt: string }> = {
   "Photoshop": { image: photoshopImg, alt: "Adobe Photoshop Interface" },
   "Illustrator": { image: illustratorImg, alt: "Adobe Illustrator Interface" },
   "UI/UX Design": { image: uiuxImg, alt: "UI/UX Design Process" },
-  "Testing Methodologies": { image: testingMethodologiesImg, alt: "Software Testing Methodologies" },
-  "Bug Tracking": { image: bugTrackingImg, alt: "Bug Tracking System Interface" },
-  "User Testing": { image: userTestingImg, alt: "User Testing Session" },
-  "Documentation": { image: documentationImg, alt: "Technical Documentation" },
+  "Strategic Thinking": { image: strategicThinkingImg, alt: "Strategic Thinking in Gaming" },
+  "Hand-Eye Coordination": { image: handEyeCoordinationImg, alt: "Hand-Eye Coordination Skills" },
+  "Team Communication": { image: teamCommunicationImg, alt: "Gaming Team Communication" },
+  "Quick Decision Making": { image: quickDecisionsImg, alt: "Quick Decision Making" },
   "Attention to Detail": { image: attentionDetailImg, alt: "Attention to Detail Concept" },
   "Team Collaboration": { image: teamCollabImg, alt: "Team Collaboration" },
   "Problem Solving": { image: problemSolvingImg, alt: "Problem Solving" },
@@ -52,9 +51,9 @@ const skillsData = [
     tools: ["Figma", "Photoshop", "Illustrator", "UI/UX Design"],
   },
   {
-    icon: TestTube,
-    title: "Quality Assurance",
-    tools: ["Testing Methodologies", "Bug Tracking", "User Testing", "Documentation"],
+    icon: Gamepad2,
+    title: "Gaming",
+    tools: ["Strategic Thinking", "Hand-Eye Coordination", "Team Communication", "Quick Decision Making"],
   },
   {
     icon: Settings,
@@ -111,12 +110,12 @@ const Skills = () => {
                 </div>
               )}
               
-              {/* QA - Checkmarks */}
-              {skill.title === "Quality Assurance" && (
+              {/* Gaming - Game controllers/joysticks */}
+              {skill.title === "Gaming" && (
                 <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
-                  <div className="absolute top-1/4 right-1/4 text-accent text-2xl animate-[scale-in_0.5s_ease-out_infinite]" style={{ animationDelay: '0s' }}>✓</div>
-                  <div className="absolute top-1/2 right-1/3 text-accent/80 text-xl animate-[scale-in_0.5s_ease-out_infinite]" style={{ animationDelay: '0.2s' }}>✓</div>
-                  <div className="absolute bottom-1/3 right-1/2 text-accent/60 text-lg animate-[scale-in_0.5s_ease-out_infinite]" style={{ animationDelay: '0.4s' }}>✓</div>
+                  <div className="absolute top-1/4 right-1/4 text-accent text-2xl animate-[bounce_0.5s_ease-in-out_infinite]" style={{ animationDelay: '0s' }}>🎮</div>
+                  <div className="absolute top-1/2 right-1/3 text-accent/80 text-xl animate-[bounce_0.5s_ease-in-out_infinite]" style={{ animationDelay: '0.2s' }}>🕹️</div>
+                  <div className="absolute bottom-1/3 right-1/2 text-accent/60 text-lg animate-[bounce_0.5s_ease-in-out_infinite]" style={{ animationDelay: '0.4s' }}>👾</div>
                 </div>
               )}
               

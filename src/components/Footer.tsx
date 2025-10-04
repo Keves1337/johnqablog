@@ -6,7 +6,7 @@ const Footer = () => {
           © 2025 Johnatan Milrad. Creative professional.
         </p>
         <p className="text-sm text-muted-foreground">
-          Currently seeking opportunities in Quality Assurance
+          Combining creativity with competitive gaming excellence
         </p>
       </div>
     </footer>

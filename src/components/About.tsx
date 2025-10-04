@@ -32,10 +32,10 @@ const About = () => {
           </p>
 
           <p>
-            Now, I'm channeling all these experiences toward a new goal — becoming
-            a professional <span className="text-foreground font-medium">QA specialist</span>.
-            I believe my diverse background gives me a unique perspective on
-            quality, user experience, and attention to detail.
+            Now, I'm channeling all these experiences into my passion for gaming,
+            where I've developed <span className="text-foreground font-medium">strategic thinking</span>,{" "}
+            <span className="text-foreground font-medium">quick decision-making</span>, and exceptional{" "}
+            <span className="text-foreground font-medium">team coordination skills</span>.
           </p>
         </div>
       </div>
