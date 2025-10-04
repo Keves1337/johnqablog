@@ -1,14 +1,13 @@
 import { useEffect, useState } from "react";
 import { Canvas } from "@react-three/fiber";
-import { Text } from "@react-three/drei";
 import * as THREE from "three";
 
-const SquareSwitch = ({ isDark, onClick }: { isDark: boolean; onClick: () => void }) => {
+const SquareSwitch = ({ isDark }: { isDark: boolean }) => {
   return (
-    <group onClick={onClick}>
-      {/* Main switch plate - larger and more visible */}
+    <group>
+      {/* Main switch plate - large and visible */}
       <mesh position={[0, 0, -0.2]} castShadow receiveShadow>
-        <boxGeometry args={[3.5, 3.5, 0.3]} />
+        <boxGeometry args={[4, 4, 0.4]} />
         <meshStandardMaterial 
           color={isDark ? "#1e293b" : "#f8fafc"} 
           roughness={0.3}
@@ -18,84 +17,78 @@ const SquareSwitch = ({ isDark, onClick }: { isDark: boolean; onClick: () => voi
 
       {/* Border frame */}
       <mesh position={[0, 0, -0.05]}>
-        <boxGeometry args={[3.7, 3.7, 0.1]} />
+        <boxGeometry args={[4.3, 4.3, 0.15]} />
         <meshStandardMaterial 
-          color={isDark ? "#0f172a" : "#e2e8f0"} 
+          color={isDark ? "#0f172a" : "#cbd5e1"} 
           roughness={0.4}
-          metalness={0.3}
+          metalness={0.4}
         />
       </mesh>
 
-      {/* Button base */}
+      {/* Button base recess */}
       <mesh position={[0, 0, 0.1]}>
-        <boxGeometry args={[2.2, 2.2, 0.2]} />
+        <boxGeometry args={[2.5, 2.5, 0.25]} />
         <meshStandardMaterial 
-          color={isDark ? "#334155" : "#cbd5e1"} 
-          roughness={0.5}
+          color={isDark ? "#334155" : "#94a3b8"} 
+          roughness={0.6}
         />
       </mesh>
 
       {/* Pressable button with smooth transition */}
-      <group position={[0, 0, isDark ? 0.25 : 0.35]}>
+      <group position={[0, 0, isDark ? 0.3 : 0.45]}>
         <mesh castShadow>
-          <boxGeometry args={[2, 2, 0.3]} />
+          <boxGeometry args={[2.3, 2.3, 0.4]} />
           <meshStandardMaterial 
-            color={isDark ? "#10b981" : "#64748b"} 
+            color={isDark ? "#10b981" : "#475569"} 
             roughness={0.3}
             metalness={0.2}
             emissive={isDark ? "#10b981" : "#000000"}
-            emissiveIntensity={isDark ? 0.3 : 0}
+            emissiveIntensity={isDark ? 0.4 : 0}
           />
         </mesh>
 
         {/* Button top highlight */}
-        <mesh position={[0, 0, 0.16]}>
-          <boxGeometry args={[1.8, 1.8, 0.01]} />
+        <mesh position={[0, 0, 0.21]}>
+          <boxGeometry args={[2.1, 2.1, 0.01]} />
           <meshStandardMaterial 
             color="#ffffff"
             transparent
-            opacity={0.2}
+            opacity={0.3}
           />
         </mesh>
       </group>
 
-      {/* "1" marking - ON position (top) */}
-      <Text
-        position={[0, 1.4, 0.05]}
-        fontSize={0.5}
-        color={isDark ? "#10b981" : "#64748b"}
-        anchorX="center"
-        anchorY="middle"
-        font="/fonts/inter-bold.woff"
-      >
-        1
-      </Text>
-
-      {/* "0" marking - OFF position (bottom) */}
-      <Text
-        position={[0, -1.4, 0.05]}
-        fontSize={0.5}
-        color={isDark ? "#64748b" : "#94a3b8"}
-        anchorX="center"
-        anchorY="middle"
-        font="/fonts/inter-bold.woff"
-      >
-        0
-      </Text>
-
-      {/* Status indicator light */}
-      <mesh position={[1.3, 1.3, 0.1]}>
-        <sphereGeometry args={[0.15, 16, 16]} />
+      {/* "1" marking - ON (top) using simple geometry */}
+      <mesh position={[0, 1.6, 0.05]}>
+        <boxGeometry args={[0.15, 0.6, 0.02]} />
         <meshStandardMaterial 
-          color={isDark ? "#10b981" : "#94a3b8"}
+          color={isDark ? "#10b981" : "#475569"}
           emissive={isDark ? "#10b981" : "#000000"}
-          emissiveIntensity={isDark ? 1 : 0}
+          emissiveIntensity={isDark ? 0.3 : 0}
+        />
+      </mesh>
+
+      {/* "0" marking - OFF (bottom) using ring geometry */}
+      <mesh position={[0, -1.6, 0.05]} rotation={[0, 0, 0]}>
+        <torusGeometry args={[0.3, 0.08, 16, 32]} />
+        <meshStandardMaterial 
+          color={isDark ? "#475569" : "#64748b"}
+        />
+      </mesh>
+
+      {/* Status indicator LED */}
+      <mesh position={[1.5, 1.5, 0.15]}>
+        <sphereGeometry args={[0.2, 16, 16]} />
+        <meshStandardMaterial 
+          color={isDark ? "#10b981" : "#64748b"}
+          emissive={isDark ? "#10b981" : "#000000"}
+          emissiveIntensity={isDark ? 1.2 : 0}
         />
       </mesh>
       
       {/* LED glow effect */}
       {isDark && (
-        <pointLight position={[1.3, 1.3, 0.5]} color="#10b981" intensity={1} distance={3} />
+        <pointLight position={[1.5, 1.5, 0.8]} color="#10b981" intensity={2} distance={4} />
       )}
     </group>
   );
@@ -121,23 +114,27 @@ const ThemeToggle = () => {
   };
 
   return (
-    <div className="fixed top-6 right-6 z-50 w-40 h-40 cursor-pointer">
+    <div 
+      className="fixed top-8 right-8 z-50 w-48 h-48 cursor-pointer bg-transparent"
+      onClick={toggleTheme}
+    >
       <Canvas
-        camera={{ position: [0, 0, 10], fov: 45 }}
+        camera={{ position: [0, 0, 12], fov: 40 }}
         shadows
+        gl={{ alpha: true, antialias: true }}
       >
-        <ambientLight intensity={0.6} />
+        <ambientLight intensity={0.7} />
         <directionalLight 
-          position={[8, 8, 8]} 
-          intensity={1.2}
+          position={[10, 10, 10]} 
+          intensity={1.5}
           castShadow
           shadow-mapSize-width={2048}
           shadow-mapSize-height={2048}
         />
-        <spotLight position={[-5, 5, 5]} intensity={0.4} />
-        <pointLight position={[0, 0, 5]} intensity={0.3} />
+        <spotLight position={[-8, 8, 8]} intensity={0.5} />
+        <pointLight position={[0, 0, 8]} intensity={0.4} color="#60a5fa" />
         
-        <SquareSwitch isDark={isDark} onClick={toggleTheme} />
+        <SquareSwitch isDark={isDark} />
       </Canvas>
     </div>
   );
