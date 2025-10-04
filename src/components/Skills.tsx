@@ -75,7 +75,6 @@ const Skills = () => {
         <div className="space-y-4 text-center">
           <h2 className="text-4xl md:text-5xl font-bold">Skills & Tools</h2>
           <div className="h-1 w-20 bg-gradient-accent rounded-full mx-auto" />
-          <p className="text-sm text-muted-foreground">Click on tools to see them in action</p>
         </div>
 
         <div className="grid md:grid-cols-2 gap-6">
