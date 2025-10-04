@@ -1,4 +1,5 @@
 import { ArrowDown } from "lucide-react";
+import jonatanPhoto from "@/assets/johnatan-photo.jpg";
 
 const Hero = () => {
   return (
@@ -10,6 +11,17 @@ const Hero = () => {
       </div>
 
       <div className="max-w-5xl mx-auto text-center space-y-8 animate-fade-in-up">
+        {/* Profile Photo */}
+        <div className="flex justify-center mb-8">
+          <div className="relative w-48 h-48 md:w-56 md:h-56">
+            <img
+              src={jonatanPhoto}
+              alt="Johnatan Milrad"
+              className="w-full h-full object-cover rounded-full border-4 border-accent/20 shadow-medium"
+            />
+            <div className="absolute inset-0 rounded-full bg-gradient-accent opacity-10" />
+          </div>
+        </div>
         <div className="space-y-4">
           <h1 className="text-6xl md:text-7xl lg:text-8xl font-bold tracking-tight">
             Johnatan <span className="text-gradient">Milrad</span>
