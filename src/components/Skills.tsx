@@ -110,13 +110,13 @@ const Skills = () => {
                 </div>
               )}
               
-              {/* Gaming - Game controllers/joysticks */}
+              {/* Gaming - Flying bullets */}
               {skill.title === "Gaming" && (
-                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none z-20">
-                  <div className="absolute top-1/4 right-1/4 text-accent text-2xl animate-[bounce_0.5s_ease-in-out_infinite]" style={{ animationDelay: '0s' }}>🎮</div>
-                  <div className="absolute top-1/2 right-1/3 text-accent/80 text-xl animate-[bounce_0.5s_ease-in-out_infinite]" style={{ animationDelay: '0.2s' }}>🕹️</div>
-                  <div className="absolute bottom-1/3 right-1/2 text-accent/60 text-lg animate-[bounce_0.5s_ease-in-out_infinite]" style={{ animationDelay: '0.4s' }}>👾</div>
-                  <div className="absolute top-1/3 left-1/4 text-accent/70 text-xl animate-[bounce_0.5s_ease-in-out_infinite]" style={{ animationDelay: '0.3s' }}>🎯</div>
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none z-20 overflow-hidden">
+                  <div className="absolute top-1/4 left-0 text-accent text-2xl animate-[slide-in-right_1.5s_ease-in-out_infinite]" style={{ animationDelay: '0s' }}>💥</div>
+                  <div className="absolute top-1/3 left-0 text-accent/80 text-xl animate-[slide-in-right_1.8s_ease-in-out_infinite]" style={{ animationDelay: '0.3s' }}>💥</div>
+                  <div className="absolute top-1/2 left-0 text-accent/70 text-lg animate-[slide-in-right_1.6s_ease-in-out_infinite]" style={{ animationDelay: '0.6s' }}>💥</div>
+                  <div className="absolute top-2/3 left-0 text-accent/60 text-xl animate-[slide-in-right_2s_ease-in-out_infinite]" style={{ animationDelay: '0.9s' }}>💥</div>
                 </div>
               )}
               
