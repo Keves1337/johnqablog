@@ -1,5 +1,5 @@
 import { Card } from "@/components/ui/card";
-import { Headphones, Palette, Bike } from "lucide-react";
+import { Headphones, Palette, Bike, Gamepad2 } from "lucide-react";
 
 const hobbiesData = [
   {
@@ -23,6 +23,13 @@ const hobbiesData = [
     icon: Bike,
     animationClass: "bike-animation",
   },
+  {
+    title: "Competitive Gaming",
+    description:
+      "Sharpening reflexes and strategy through intense gaming sessions. Every match is an opportunity to learn and improve.",
+    icon: Gamepad2,
+    animationClass: "gaming-animation",
+  },
 ];
 
 const Hobbies = () => {
@@ -37,7 +44,7 @@ const Hobbies = () => {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-6">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
           {hobbiesData.map((hobby, index) => (
             <Card
               key={hobby.title}
@@ -70,6 +77,15 @@ const Hobbies = () => {
                   <div className="absolute bottom-0 right-1/4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                     <div className="w-8 h-2 bg-muted-foreground/30 rounded-full animate-[slide-out-right_0.8s_ease-out_infinite] blur-sm" style={{ animationDelay: '0s' }} />
                     <div className="w-6 h-2 bg-muted-foreground/20 rounded-full animate-[slide-out-right_0.8s_ease-out_infinite] blur-sm mt-1" style={{ animationDelay: '0.2s' }} />
+                  </div>
+                )}
+                
+                {/* Bullet trails for Gaming */}
+                {hobby.animationClass === "gaming-animation" && (
+                  <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <div className="absolute left-0 top-1/4 h-1 w-12 bg-accent rounded-full animate-[slide-out-right_0.8s_ease-in-out_infinite]" style={{ animationDelay: '0s' }} />
+                    <div className="absolute left-0 top-1/2 h-1 w-16 bg-primary/80 rounded-full animate-[slide-out-right_0.9s_ease-in-out_infinite]" style={{ animationDelay: '0.2s' }} />
+                    <div className="absolute left-0 top-3/4 h-1 w-10 bg-accent/70 rounded-full animate-[slide-out-right_0.7s_ease-in-out_infinite]" style={{ animationDelay: '0.4s' }} />
                   </div>
                 )}
               </div>

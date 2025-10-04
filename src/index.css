@@ -119,6 +119,10 @@ All colors MUST be HSL.
     animation: wheelie 0.8s ease-in-out infinite;
   }
 
+  .gaming-animation:hover svg {
+    animation: gaming-pulse 0.6s ease-in-out infinite;
+  }
+
   @keyframes shake {
     0%, 100% { transform: rotate(0deg); }
     25% { transform: rotate(-5deg); }
@@ -133,6 +137,11 @@ All colors MUST be HSL.
   @keyframes wheelie {
     0%, 100% { transform: rotate(0deg) translateY(0); }
     50% { transform: rotate(-15deg) translateY(-5px); }
+  }
+
+  @keyframes gaming-pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
   }
 
   @keyframes slide-down {
