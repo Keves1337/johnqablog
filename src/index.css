@@ -105,4 +105,33 @@ All colors MUST be HSL.
   .section-padding {
     @apply px-6 py-20 md:px-12 lg:px-24 lg:py-32;
   }
+
+  /* Hobby icon animations */
+  .dj-animation:hover svg {
+    animation: shake 0.5s ease-in-out infinite;
+  }
+
+  .design-animation:hover svg {
+    animation: spin-slow 2s linear infinite;
+  }
+
+  .bike-animation:hover svg {
+    animation: wheelie 0.8s ease-in-out infinite;
+  }
+
+  @keyframes shake {
+    0%, 100% { transform: rotate(0deg); }
+    25% { transform: rotate(-5deg); }
+    75% { transform: rotate(5deg); }
+  }
+
+  @keyframes spin-slow {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+
+  @keyframes wheelie {
+    0%, 100% { transform: rotate(0deg) translateY(0); }
+    50% { transform: rotate(-15deg) translateY(-5px); }
+  }
 }
