@@ -75,6 +75,9 @@ const Skills = () => {
         <div className="space-y-4 text-center">
           <h2 className="text-4xl md:text-5xl font-bold">Skills & Tools</h2>
           <div className="h-1 w-20 bg-gradient-accent rounded-full mx-auto" />
+          <p className="text-muted-foreground max-w-2xl mx-auto">
+            A diverse toolkit built through years of creative exploration and professional growth
+          </p>
         </div>
 
         <div className="grid md:grid-cols-2 gap-6">
