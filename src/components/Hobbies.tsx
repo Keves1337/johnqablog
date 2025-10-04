@@ -5,7 +5,7 @@ const hobbiesData = [
   {
     title: "DJing & Music Mixing",
     description:
-      "Crafting sonic experiences and keeping the dance floor alive. Music is not just a hobby, it's a way of life.",
+      "Crafting sonic experiences and keeping the dance floor alive. Music is not just a hobby—it's a way of life.",
     icon: Headphones,
     animationClass: "dj-animation",
   },

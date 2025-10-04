@@ -11,7 +11,7 @@ const About = () => {
           <p>
             I'm a 33-year-old creative professional based in{" "}
             <span className="text-foreground font-medium">Ashdod, Israel</span>.
-            Currently working as a baker at Roladin, but my journey has been
+            I'm currently working as a baker at Roladin, but my journey has been
             anything but conventional.
           </p>
 
@@ -28,7 +28,7 @@ const About = () => {
             Along the way, I discovered another love:{" "}
             <span className="text-foreground font-medium">UI/UX design</span>.
             The intersection of aesthetics and functionality fascinated me, and I
-            dove into learning design principles and tools.
+            delved into learning design principles and tools.
           </p>
 
           <p>
