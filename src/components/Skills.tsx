@@ -82,10 +82,49 @@ const Skills = () => {
           {skillsData.map((skill, index) => (
             <Card
               key={skill.title}
-              className="p-6 hover:shadow-medium transition-all duration-300 hover:-translate-y-1 border-border/50"
+              className="p-6 hover:shadow-medium transition-all duration-300 hover:-translate-y-1 border-border/50 group relative overflow-hidden"
               style={{ animationDelay: `${index * 100}ms` }}
             >
-              <div className="flex items-start gap-4">
+              {/* Music Production - Beats from top */}
+              {skill.title === "Music Production" && (
+                <div className="absolute top-0 left-0 right-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
+                  <div className="absolute top-0 left-1/4 w-1 h-8 bg-accent animate-[slide-down_1s_ease-in-out_infinite]" style={{ animationDelay: '0s' }} />
+                  <div className="absolute top-0 left-1/2 w-1 h-12 bg-accent/80 animate-[slide-down_1s_ease-in-out_infinite]" style={{ animationDelay: '0.2s' }} />
+                  <div className="absolute top-0 left-3/4 w-1 h-10 bg-accent/60 animate-[slide-down_1s_ease-in-out_infinite]" style={{ animationDelay: '0.4s' }} />
+                  <div className="absolute top-0 right-1/4 w-1 h-14 bg-accent/90 animate-[slide-down_1s_ease-in-out_infinite]" style={{ animationDelay: '0.6s' }} />
+                </div>
+              )}
+              
+              {/* Design - Color splatter */}
+              {skill.title === "Design" && (
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
+                  <div className="absolute top-1/4 left-1/4 w-16 h-16 bg-accent/20 rounded-full animate-ping" style={{ animationDelay: '0s' }} />
+                  <div className="absolute top-1/3 right-1/4 w-12 h-12 bg-primary/20 rounded-full animate-ping" style={{ animationDelay: '0.3s' }} />
+                  <div className="absolute bottom-1/3 left-1/2 w-10 h-10 bg-accent/15 rounded-full animate-ping" style={{ animationDelay: '0.6s' }} />
+                  <div className="absolute top-1/2 left-1/3 w-8 h-8 bg-primary/15 rounded-full animate-ping" style={{ animationDelay: '0.2s' }} />
+                </div>
+              )}
+              
+              {/* QA - Checkmarks */}
+              {skill.title === "Quality Assurance" && (
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
+                  <div className="absolute top-1/4 right-1/4 text-accent text-2xl animate-[scale-in_0.5s_ease-out_infinite]" style={{ animationDelay: '0s' }}>✓</div>
+                  <div className="absolute top-1/2 right-1/3 text-accent/80 text-xl animate-[scale-in_0.5s_ease-out_infinite]" style={{ animationDelay: '0.2s' }}>✓</div>
+                  <div className="absolute bottom-1/3 right-1/2 text-accent/60 text-lg animate-[scale-in_0.5s_ease-out_infinite]" style={{ animationDelay: '0.4s' }}>✓</div>
+                </div>
+              )}
+              
+              {/* Other Skills - Sparks/Stars */}
+              {skill.title === "Other Skills" && (
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
+                  <div className="absolute top-1/4 left-1/4 text-accent text-xl animate-[spin-slow_2s_linear_infinite]" style={{ animationDelay: '0s' }}>✦</div>
+                  <div className="absolute top-1/3 right-1/4 text-accent/70 text-lg animate-[spin-slow_2s_linear_infinite]" style={{ animationDelay: '0.3s' }}>✧</div>
+                  <div className="absolute bottom-1/3 left-1/3 text-accent/80 text-2xl animate-[spin-slow_2s_linear_infinite]" style={{ animationDelay: '0.6s' }}>★</div>
+                  <div className="absolute top-1/2 right-1/3 text-accent/60 text-lg animate-[spin-slow_2s_linear_infinite]" style={{ animationDelay: '0.9s' }}>✦</div>
+                </div>
+              )}
+              
+              <div className="flex items-start gap-4 relative z-10">
                 <div className="p-3 bg-gradient-accent rounded-lg">
                   <skill.icon className="w-6 h-6 text-accent-foreground" />
                 </div>
