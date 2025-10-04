@@ -12,6 +12,10 @@ import photoshopImg from "@/assets/tools/photoshop.jpg";
 import illustratorImg from "@/assets/tools/illustrator.jpg";
 import uiuxImg from "@/assets/tools/uiux.jpg";
 import qaImg from "@/assets/tools/qa.jpg";
+import attentionDetailImg from "@/assets/skills/attention-detail.jpg";
+import teamCollabImg from "@/assets/skills/team-collaboration.jpg";
+import problemSolvingImg from "@/assets/skills/problem-solving.jpg";
+import creativeThinkingImg from "@/assets/skills/creative-thinking.jpg";
 
 const toolImages: Record<string, { image: string; alt: string }> = {
   "Cubase": { image: cubaseImg, alt: "Cubase DAW Interface" },
@@ -26,6 +30,10 @@ const toolImages: Record<string, { image: string; alt: string }> = {
   "Bug Tracking": { image: qaImg, alt: "Bug Tracking System" },
   "User Testing": { image: qaImg, alt: "User Testing Process" },
   "Documentation": { image: qaImg, alt: "QA Documentation" },
+  "Attention to Detail": { image: attentionDetailImg, alt: "Attention to Detail Concept" },
+  "Team Collaboration": { image: teamCollabImg, alt: "Team Collaboration" },
+  "Problem Solving": { image: problemSolvingImg, alt: "Problem Solving" },
+  "Creative Thinking": { image: creativeThinkingImg, alt: "Creative Thinking" },
 };
 
 const skillsData = [
