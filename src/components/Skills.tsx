@@ -112,7 +112,7 @@ const Skills = () => {
               
               {/* Gaming - Horizontal bullet trails */}
               {skill.title === "Gaming" && (
-                <div className="absolute top-0 left-0 right-0 bottom-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none z-20">
+                <div className="absolute top-0 left-0 right-0 bottom-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
                   <div className="absolute top-1/4 left-0 h-1 w-16 bg-accent animate-[slide-in-right_1s_ease-in-out_infinite]" style={{ animationDelay: '0s' }} />
                   <div className="absolute top-1/3 left-0 h-1 w-20 bg-accent/80 animate-[slide-in-right_1s_ease-in-out_infinite]" style={{ animationDelay: '0.2s' }} />
                   <div className="absolute top-1/2 left-0 h-1 w-14 bg-accent/60 animate-[slide-in-right_1s_ease-in-out_infinite]" style={{ animationDelay: '0.4s' }} />
