@@ -1,103 +1,10 @@
 import { useEffect, useState } from "react";
-import { Canvas } from "@react-three/fiber";
-import * as THREE from "three";
-
-const SquareSwitch = ({ isDark }: { isDark: boolean }) => {
-  return (
-    <group>
-      {/* Main switch plate - large and visible */}
-      <mesh position={[0, 0, -0.2]} castShadow receiveShadow>
-        <boxGeometry args={[4, 4, 0.4]} />
-        <meshStandardMaterial 
-          color={isDark ? "#1e293b" : "#f8fafc"} 
-          roughness={0.3}
-          metalness={0.2}
-        />
-      </mesh>
-
-      {/* Border frame */}
-      <mesh position={[0, 0, -0.05]}>
-        <boxGeometry args={[4.3, 4.3, 0.15]} />
-        <meshStandardMaterial 
-          color={isDark ? "#0f172a" : "#cbd5e1"} 
-          roughness={0.4}
-          metalness={0.4}
-        />
-      </mesh>
-
-      {/* Button base recess */}
-      <mesh position={[0, 0, 0.1]}>
-        <boxGeometry args={[2.5, 2.5, 0.25]} />
-        <meshStandardMaterial 
-          color={isDark ? "#334155" : "#94a3b8"} 
-          roughness={0.6}
-        />
-      </mesh>
-
-      {/* Pressable button with smooth transition */}
-      <group position={[0, 0, isDark ? 0.3 : 0.45]}>
-        <mesh castShadow>
-          <boxGeometry args={[2.3, 2.3, 0.4]} />
-          <meshStandardMaterial 
-            color={isDark ? "#10b981" : "#475569"} 
-            roughness={0.3}
-            metalness={0.2}
-            emissive={isDark ? "#10b981" : "#000000"}
-            emissiveIntensity={isDark ? 0.4 : 0}
-          />
-        </mesh>
-
-        {/* Button top highlight */}
-        <mesh position={[0, 0, 0.21]}>
-          <boxGeometry args={[2.1, 2.1, 0.01]} />
-          <meshStandardMaterial 
-            color="#ffffff"
-            transparent
-            opacity={0.3}
-          />
-        </mesh>
-      </group>
-
-      {/* "1" marking - ON (top) using simple geometry */}
-      <mesh position={[0, 1.6, 0.05]}>
-        <boxGeometry args={[0.15, 0.6, 0.02]} />
-        <meshStandardMaterial 
-          color={isDark ? "#10b981" : "#475569"}
-          emissive={isDark ? "#10b981" : "#000000"}
-          emissiveIntensity={isDark ? 0.3 : 0}
-        />
-      </mesh>
-
-      {/* "0" marking - OFF (bottom) using ring geometry */}
-      <mesh position={[0, -1.6, 0.05]} rotation={[0, 0, 0]}>
-        <torusGeometry args={[0.3, 0.08, 16, 32]} />
-        <meshStandardMaterial 
-          color={isDark ? "#475569" : "#64748b"}
-        />
-      </mesh>
-
-      {/* Status indicator LED */}
-      <mesh position={[1.5, 1.5, 0.15]}>
-        <sphereGeometry args={[0.2, 16, 16]} />
-        <meshStandardMaterial 
-          color={isDark ? "#10b981" : "#64748b"}
-          emissive={isDark ? "#10b981" : "#000000"}
-          emissiveIntensity={isDark ? 1.2 : 0}
-        />
-      </mesh>
-      
-      {/* LED glow effect */}
-      {isDark && (
-        <pointLight position={[1.5, 1.5, 0.8]} color="#10b981" intensity={2} distance={4} />
-      )}
-    </group>
-  );
-};
 
 const ThemeToggle = () => {
   const [isDark, setIsDark] = useState(false);
 
   useEffect(() => {
+    // Check initial theme
     const isDarkMode = document.documentElement.classList.contains('dark');
     setIsDark(isDarkMode);
   }, []);
@@ -114,29 +21,44 @@ const ThemeToggle = () => {
   };
 
   return (
-    <div 
-      className="fixed top-8 right-8 z-50 w-48 h-48 cursor-pointer bg-transparent"
+    <button
       onClick={toggleTheme}
+      className="fixed top-6 right-6 z-50 group"
+      aria-label="Toggle theme"
     >
-      <Canvas
-        camera={{ position: [0, 0, 12], fov: 40 }}
-        shadows
-        gl={{ alpha: true, antialias: true }}
-      >
-        <ambientLight intensity={0.7} />
-        <directionalLight 
-          position={[10, 10, 10]} 
-          intensity={1.5}
-          castShadow
-          shadow-mapSize-width={2048}
-          shadow-mapSize-height={2048}
-        />
-        <spotLight position={[-8, 8, 8]} intensity={0.5} />
-        <pointLight position={[0, 0, 8]} intensity={0.4} color="#60a5fa" />
+      <div className="relative w-20 h-10 bg-gradient-to-r from-gray-300 to-gray-400 dark:from-gray-700 dark:to-gray-800 rounded-full shadow-lg transition-all duration-500 border-2 border-gray-400/30 dark:border-gray-600/50">
+        {/* Switch track groove effect */}
+        <div className="absolute inset-1 bg-gradient-to-b from-gray-200/50 to-transparent dark:from-gray-900/50 rounded-full" />
         
-        <SquareSwitch isDark={isDark} />
-      </Canvas>
-    </div>
+        {/* Switch handle */}
+        <div
+          className={`absolute top-1 left-1 w-8 h-8 bg-gradient-to-br from-white to-gray-100 dark:from-gray-300 dark:to-gray-400 rounded-full shadow-xl transition-all duration-500 ease-in-out transform ${
+            isDark ? 'translate-x-10' : 'translate-x-0'
+          } group-hover:scale-110`}
+        >
+          {/* Handle shine effect */}
+          <div className="absolute inset-0 rounded-full bg-gradient-to-br from-white/80 via-transparent to-transparent" />
+          
+          {/* Handle shadow/depth */}
+          <div className="absolute inset-0.5 rounded-full bg-gradient-to-b from-gray-50 to-gray-200 dark:from-gray-200 dark:to-gray-300" />
+          
+          {/* Icon indicator */}
+          <div className="absolute inset-0 flex items-center justify-center text-xs">
+            {isDark ? '🌙' : '☀️'}
+          </div>
+        </div>
+
+        {/* Track indicators */}
+        <div className="absolute inset-0 flex items-center justify-between px-3 text-xs pointer-events-none">
+          <span className={`transition-opacity duration-300 ${!isDark ? 'opacity-70' : 'opacity-0'}`}>
+            ☀️
+          </span>
+          <span className={`transition-opacity duration-300 ${isDark ? 'opacity-70' : 'opacity-0'}`}>
+            🌙
+          </span>
+        </div>
+      </div>
+    </button>
   );
 };
 
