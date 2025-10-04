@@ -12,6 +12,10 @@ import photoshopImg from "@/assets/tools/photoshop.jpg";
 import illustratorImg from "@/assets/tools/illustrator.jpg";
 import uiuxImg from "@/assets/tools/uiux.jpg";
 import qaImg from "@/assets/tools/qa.jpg";
+import testingMethodologiesImg from "@/assets/tools/testing-methodologies.jpg";
+import bugTrackingImg from "@/assets/tools/bug-tracking.jpg";
+import userTestingImg from "@/assets/tools/user-testing.jpg";
+import documentationImg from "@/assets/tools/documentation.jpg";
 import attentionDetailImg from "@/assets/skills/attention-detail.jpg";
 import teamCollabImg from "@/assets/skills/team-collaboration.jpg";
 import problemSolvingImg from "@/assets/skills/problem-solving.jpg";
@@ -26,10 +30,10 @@ const toolImages: Record<string, { image: string; alt: string }> = {
   "Photoshop": { image: photoshopImg, alt: "Adobe Photoshop Interface" },
   "Illustrator": { image: illustratorImg, alt: "Adobe Illustrator Interface" },
   "UI/UX Design": { image: uiuxImg, alt: "UI/UX Design Process" },
-  "Testing Methodologies": { image: qaImg, alt: "QA Testing Workspace" },
-  "Bug Tracking": { image: qaImg, alt: "Bug Tracking System" },
-  "User Testing": { image: qaImg, alt: "User Testing Process" },
-  "Documentation": { image: qaImg, alt: "QA Documentation" },
+  "Testing Methodologies": { image: testingMethodologiesImg, alt: "Software Testing Methodologies" },
+  "Bug Tracking": { image: bugTrackingImg, alt: "Bug Tracking System Interface" },
+  "User Testing": { image: userTestingImg, alt: "User Testing Session" },
+  "Documentation": { image: documentationImg, alt: "Technical Documentation" },
   "Attention to Detail": { image: attentionDetailImg, alt: "Attention to Detail Concept" },
   "Team Collaboration": { image: teamCollabImg, alt: "Team Collaboration" },
   "Problem Solving": { image: problemSolvingImg, alt: "Problem Solving" },
