@@ -14,6 +14,15 @@ const Hero = () => {
         {/* Profile Photo */}
         <div className="flex justify-center mb-8">
           <div className="relative w-48 h-48 md:w-56 md:h-56">
+            {/* Flickering light effect - only visible in dark mode */}
+            <div className="absolute -top-20 left-1/2 -translate-x-1/2 w-2 h-12 dark:block hidden">
+              <div className="absolute inset-0 bg-gradient-to-b from-yellow-200/0 via-yellow-300/80 to-yellow-400 rounded-full animate-flicker" />
+              <div className="absolute top-0 left-1/2 -translate-x-1/2 w-8 h-8 bg-yellow-300/40 rounded-full blur-xl animate-flicker-glow" />
+              {/* Light bulb at top */}
+              <div className="absolute -top-3 left-1/2 -translate-x-1/2 w-4 h-5 bg-yellow-200 rounded-full border-2 border-yellow-300/50 animate-flicker-bulb">
+                <div className="absolute inset-0.5 bg-gradient-to-b from-yellow-100 to-yellow-200 rounded-full" />
+              </div>
+            </div>
             <img
               src={jonatanPhoto}
               alt="Johnatan Milrad"
