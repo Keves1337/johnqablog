@@ -23,8 +23,8 @@ const Hero = () => {
           </div>
         </div>
         <div className="space-y-4">
-          <h1 className="text-6xl md:text-7xl lg:text-8xl font-bold tracking-tight">
-            Johnatan <span className="text-gradient">Milrad</span>
+          <h1 className="text-6xl md:text-7xl lg:text-8xl font-bold tracking-tight text-gradient">
+            Johnatan Milrad
           </h1>
           <p className="text-xl md:text-2xl text-muted-foreground max-w-2xl mx-auto">
             Baker by day, creative by night—blending music production, design,
