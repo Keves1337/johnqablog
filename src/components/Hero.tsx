@@ -14,30 +14,6 @@ const Hero = () => {
         {/* Profile Photo */}
         <div className="flex justify-center mb-8">
           <div className="relative w-48 h-48 md:w-56 md:h-56">
-            {/* Flickering light effect - only visible in dark mode */}
-            <div className="absolute -top-24 left-1/2 -translate-x-1/2 dark:block hidden">
-              {/* Light bulb */}
-              <div className="relative w-6 h-8 mx-auto">
-                <div className="absolute inset-0 bg-gradient-to-b from-yellow-200 via-yellow-300 to-yellow-400/80 rounded-full animate-flicker-bulb shadow-lg">
-                  <div className="absolute inset-1 bg-gradient-to-b from-yellow-100 to-yellow-200 rounded-full" />
-                  <div className="absolute inset-0 bg-gradient-to-br from-white/60 via-transparent to-transparent rounded-full" />
-                </div>
-              </div>
-              
-              {/* Main light cone/rays */}
-              <div className="absolute top-6 left-1/2 -translate-x-1/2 w-32 h-32 pointer-events-none">
-                {/* Multiple light ray layers for depth */}
-                <div className="absolute inset-0 bg-gradient-to-b from-yellow-200/40 via-yellow-300/20 to-transparent animate-flicker" 
-                     style={{ clipPath: 'polygon(40% 0%, 60% 0%, 100% 100%, 0% 100%)' }} />
-                <div className="absolute inset-0 bg-gradient-to-b from-yellow-100/30 via-yellow-200/15 to-transparent animate-flicker-glow" 
-                     style={{ clipPath: 'polygon(35% 0%, 65% 0%, 100% 100%, 0% 100%)' }} />
-                <div className="absolute inset-0 bg-gradient-to-b from-white/20 via-yellow-100/10 to-transparent animate-flicker-soft" 
-                     style={{ clipPath: 'polygon(30% 0%, 70% 0%, 100% 100%, 0% 100%)' }} />
-              </div>
-              
-              {/* Ambient glow around bulb */}
-              <div className="absolute top-0 left-1/2 -translate-x-1/2 w-12 h-12 bg-yellow-300/30 rounded-full blur-2xl animate-flicker-glow" />
-            </div>
             <img
               src={jonatanPhoto}
               alt="Johnatan Milrad"
