@@ -1,83 +1,96 @@
 import { useState, useRef, useEffect } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Textarea } from "@/components/ui/textarea";
-import eyesImage from "@/assets/cute-eyes.png";
+import cameraImage from "@/assets/security-camera.png";
 
 const Feedback = () => {
-  const [eyePosition, setEyePosition] = useState({ x: 0, y: 0 });
-  const eyesRef = useRef<HTMLDivElement>(null);
-  const containerRef = useRef<HTMLDivElement>(null);
+  const [cameraRotation, setCameraRotation] = useState({ angle: 0, tilt: 0 });
+  const cameraRef = useRef<HTMLDivElement>(null);
+  const textareaRef = useRef<HTMLTextAreaElement>(null);
 
   useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      if (!eyesRef.current) return;
+    const handleTextInput = () => {
+      if (!textareaRef.current || !cameraRef.current) return;
 
-      const eyesRect = eyesRef.current.getBoundingClientRect();
-      const eyesCenterX = eyesRect.left + eyesRect.width / 2;
-      const eyesCenterY = eyesRect.top + eyesRect.height / 2;
+      const textarea = textareaRef.current;
+      const cameraRect = cameraRef.current.getBoundingClientRect();
+      const textareaRect = textarea.getBoundingClientRect();
 
-      const deltaX = e.clientX - eyesCenterX;
-      const deltaY = e.clientY - eyesCenterY;
+      // Get cursor position in textarea
+      const cursorPos = textarea.selectionStart;
+      const textBeforeCursor = textarea.value.substring(0, cursorPos);
+      const lines = textBeforeCursor.split('\n');
+      const currentLine = lines.length;
+      const currentColumn = lines[lines.length - 1].length;
 
-      // Calculate angle and distance
-      const angle = Math.atan2(deltaY, deltaX);
-      const distance = Math.min(Math.sqrt(deltaX * deltaX + deltaY * deltaY), 25);
+      // Calculate approximate cursor position
+      const charWidth = 8;
+      const lineHeight = 24;
       
-      // Convert to x, y coordinates for pupil movement (max 25px from center)
-      const maxMovement = 25;
-      const normalizedDistance = Math.min(distance / 3, maxMovement);
-      
-      const x = Math.cos(angle) * normalizedDistance;
-      const y = Math.sin(angle) * normalizedDistance;
+      const cursorX = textareaRect.left + currentColumn * charWidth + 12; // padding offset
+      const cursorY = textareaRect.top + (currentLine - 1) * lineHeight + 20; // padding offset
 
-      setEyePosition({ x, y });
+      // Calculate relative position to camera center
+      const cameraCenterX = cameraRect.left + cameraRect.width / 2;
+      const cameraCenterY = cameraRect.top + cameraRect.height / 2;
+
+      const deltaX = cursorX - cameraCenterX;
+      const deltaY = cursorY - cameraCenterY;
+
+      // Calculate angle for camera rotation (-30 to 30 degrees)
+      const angle = Math.atan2(deltaX, -deltaY) * (180 / Math.PI);
+      const clampedAngle = Math.max(-30, Math.min(30, angle));
+
+      // Calculate tilt based on vertical distance (-20 to 20 degrees)
+      const distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
+      const tilt = Math.max(-20, Math.min(20, (deltaY / distance) * 20));
+
+      setCameraRotation({ angle: clampedAngle, tilt });
     };
 
-    const container = containerRef.current;
-    if (container) {
-      container.addEventListener('mousemove', handleMouseMove);
+    const textarea = textareaRef.current;
+    if (textarea) {
+      textarea.addEventListener('input', handleTextInput);
+      textarea.addEventListener('click', handleTextInput);
+      textarea.addEventListener('keyup', handleTextInput);
+      textarea.addEventListener('focus', handleTextInput);
     }
 
     return () => {
-      if (container) {
-        container.removeEventListener('mousemove', handleMouseMove);
+      if (textarea) {
+        textarea.removeEventListener('input', handleTextInput);
+        textarea.removeEventListener('click', handleTextInput);
+        textarea.removeEventListener('keyup', handleTextInput);
+        textarea.removeEventListener('focus', handleTextInput);
       }
     };
   }, []);
 
   return (
-    <section ref={containerRef} className="section-padding bg-background">
+    <section className="section-padding bg-background">
       <div className="max-w-4xl mx-auto space-y-12">
         <div className="space-y-4 text-center">
           <h2 className="text-4xl md:text-5xl font-bold">Share Your Thoughts</h2>
           <div className="h-1 w-20 bg-gradient-accent rounded-full mx-auto" />
         </div>
 
-        {/* Animated Eyes */}
-        <div ref={eyesRef} className="flex justify-center mb-8">
-          <div className="relative w-80 h-40 md:w-96 md:h-48">
-            <img
-              src={eyesImage}
-              alt="Watching eyes"
-              className="w-full h-full object-contain"
-            />
-            {/* Left Pupil */}
+        {/* Surveillance Camera */}
+        <div className="flex justify-center mb-8">
+          <div ref={cameraRef} className="relative w-48 h-48 md:w-64 md:h-64 flex items-center justify-center">
             <div
-              className="absolute left-[30%] top-1/2 -translate-x-1/2 -translate-y-1/2 w-8 h-8 md:w-12 md:h-12 bg-foreground rounded-full transition-transform duration-150 ease-out"
+              className="transition-all duration-300 ease-out"
               style={{
-                transform: `translate(calc(-50% + ${eyePosition.x}px), calc(-50% + ${eyePosition.y}px))`,
+                transform: `rotateZ(${cameraRotation.angle}deg) rotateX(${cameraRotation.tilt}deg)`,
+                transformOrigin: 'center center',
               }}
             >
-              <div className="absolute top-[20%] left-[30%] w-2 h-2 md:w-3 md:h-3 bg-background rounded-full" />
-            </div>
-            {/* Right Pupil */}
-            <div
-              className="absolute left-[70%] top-1/2 -translate-x-1/2 -translate-y-1/2 w-8 h-8 md:w-12 md:h-12 bg-foreground rounded-full transition-transform duration-150 ease-out"
-              style={{
-                transform: `translate(calc(-50% + ${eyePosition.x}px), calc(-50% + ${eyePosition.y}px))`,
-              }}
-            >
-              <div className="absolute top-[20%] left-[30%] w-2 h-2 md:w-3 md:h-3 bg-background rounded-full" />
+              <img
+                src={cameraImage}
+                alt="Surveillance camera watching your typing"
+                className="w-full h-full object-contain drop-shadow-lg"
+              />
+              {/* Recording indicator light */}
+              <div className="absolute top-1/4 right-1/4 w-3 h-3 bg-red-500 rounded-full animate-pulse" />
             </div>
           </div>
         </div>
@@ -86,7 +99,8 @@ const Feedback = () => {
         <Card className="shadow-medium hover:shadow-lg transition-shadow duration-300">
           <CardContent className="p-6">
             <Textarea
-              placeholder="Type your feedback here... Watch the eyes follow your mouse! 👀"
+              ref={textareaRef}
+              placeholder="Type your feedback here... Watch the camera follow your typing! 📹"
               className="min-h-[200px] text-base resize-none"
             />
           </CardContent>
