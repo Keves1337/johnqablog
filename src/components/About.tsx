@@ -32,9 +32,9 @@ const About = () => {
           </p>
 
           <p>
-            Now, I'm channeling all these experiences into my career as a{" "}
+            Now, I'm looking to channel all these experiences into a career as a{" "}
             <span className="text-foreground font-medium">QA professional</span>,
-            where I've developed <span className="text-foreground font-medium">meticulous attention to detail</span>,{" "}
+            where I can develop <span className="text-foreground font-medium">meticulous attention to detail</span>,{" "}
             <span className="text-foreground font-medium">systematic problem-solving</span>, and strong{" "}
             <span className="text-foreground font-medium">cross-functional collaboration skills</span>.
           </p>
