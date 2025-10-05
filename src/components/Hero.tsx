@@ -14,28 +14,12 @@ const Hero = () => {
         {/* Profile Photo */}
         <div className="flex justify-center mb-8">
           <div className="relative w-48 h-48 md:w-56 md:h-56">
-            {/* Graphic Equalizer Bars */}
-            {[...Array(12)].map((_, i) => (
-              <div
-                key={i}
-                className="absolute w-1 bg-gradient-to-t from-accent to-primary rounded-full"
-                style={{
-                  height: '20%',
-                  left: '50%',
-                  top: '50%',
-                  transformOrigin: '0 0',
-                  transform: `rotate(${i * 30}deg) translateY(-140%)`,
-                  animation: `equalizer ${0.6 + (i % 3) * 0.2}s ease-in-out infinite alternate`,
-                  animationDelay: `${i * 0.1}s`,
-                }}
-              />
-            ))}
             <img
               src={jonatanPhoto}
               alt="Johnatan Milrad"
-              className="w-full h-full object-cover rounded-full border-4 border-accent/20 shadow-medium relative z-10"
+              className="w-full h-full object-cover rounded-full border-4 border-accent/20 shadow-medium"
             />
-            <div className="absolute inset-0 rounded-full bg-gradient-accent opacity-10 z-10" />
+            <div className="absolute inset-0 rounded-full bg-gradient-accent opacity-10" />
           </div>
         </div>
         <div className="space-y-4">
