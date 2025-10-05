@@ -32,10 +32,11 @@ const About = () => {
           </p>
 
           <p>
-            Now, I'm channeling all these experiences into my passion for gaming,
-            where I've developed <span className="text-foreground font-medium">strategic thinking</span>,{" "}
-            <span className="text-foreground font-medium">quick decision-making</span>, and exceptional{" "}
-            <span className="text-foreground font-medium">team coordination skills</span>.
+            Now, I'm channeling all these experiences into my career as a{" "}
+            <span className="text-foreground font-medium">QA professional</span>,
+            where I've developed <span className="text-foreground font-medium">meticulous attention to detail</span>,{" "}
+            <span className="text-foreground font-medium">systematic problem-solving</span>, and strong{" "}
+            <span className="text-foreground font-medium">cross-functional collaboration skills</span>.
           </p>
         </div>
       </div>
