@@ -14,7 +14,7 @@ const Footer = () => {
         {/* Project Links */}
         <div className="flex flex-wrap justify-center gap-4 pt-2">
           <a
-            href="https://lovable.dev/projects/36e61818-6440-4c46-8cb9-d642799c9bc4"
+            href="https://qabehemoth.lovable.app/"
             target="_blank"
             rel="noopener noreferrer"
             className="group flex items-center gap-2 px-4 py-2 rounded-lg bg-card border border-border hover:border-accent transition-all duration-300"
