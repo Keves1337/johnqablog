@@ -23,7 +23,7 @@ const Footer = () => {
             <ExternalLink className="w-4 h-4 text-muted-foreground group-hover:text-accent transition-colors" />
           </a>
           <a
-            href="https://lovable.dev/projects/a323a14f-369e-4cce-9c6f-45ebc1065c38"
+            href="https://keves1337.github.io/behemothmix/"
             target="_blank"
             rel="noopener noreferrer"
             className="group flex items-center gap-2 px-4 py-2 rounded-lg bg-card border border-border hover:border-accent transition-all duration-300"
